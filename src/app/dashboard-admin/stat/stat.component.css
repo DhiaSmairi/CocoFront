@@ -1,0 +1,34 @@
+.chart-container {
+    position: relative;
+    width: 80%; /* Ajustez la largeur selon vos besoins */
+    margin: 20px auto; /* Centrez le graphique */
+  }
+  
+  .canvas-container {
+    position: relative;
+  }
+  
+  canvas {
+    width: 100%; /* Assurez-vous que le graphique remplit le conteneur */
+    height: auto;
+  }
+  
+  .custom-bar {
+    position: absolute;
+    width: 2px; /* Réduisez la largeur de la barre */
+    background-color: #3366ff; /* Couleur de la barre */
+    z-index: 1; /* Assurez-vous que les barres sont placées au-dessus du graphique */
+  }
+  
+  .custom-bars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin-left: 5px; /* Ajustez l'espacement entre les barres */
+  }
+  
+  .custom-bar-label {
+    margin-right: 5px; /* Ajustez l'espacement entre les étiquettes */
+  }
+  

@@ -1,0 +1,135 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Your Claims</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".6s" *ngIf="allReclamation.length==0 ">You have no Claims</p>
+                </div>
+            </div>
+        </div>
+        <div class="single-head">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12" *ngFor="let claim of allReclamation">
+                    <!-- Start Single Grid -->
+                    <div class="single-grid wow fadeInUp" data-wow-delay=".4s">
+                        <div class="content">
+                            <div class="top-content">
+                                <span class="tag">{{claim.title}}</span>
+                                
+                                <h3 class="title">
+                                    <p>{{claim.description}}</p>
+                                </h3>
+                                <div class="rating">
+                                    Type: <span>{{claim.typeClaim}}</span>
+                                </div>
+                                <ul class="info-list">
+                                    <li><i class="lni lni-timer"></i> Created At: {{claim.createdAt | date }}</li>
+                                    <li *ngIf="claim.consultAt!=null"><i class="lni lni-timer"></i> {{claim.consultAt | date}}</li>
+                                </ul>
+                            </div>
+                            <div class="bottom-content">
+                                <p class="price">Status: <span>{{claim.statusClaims}}</span></p>
+                                <button class="like" (click)="gotoedit(claim)"><i class="fas fa-pen"></i></button>&nbsp;&nbsp;
+                                <button class="like" (click)="onDelete(claim)"><i class="fas fa-eraser"></i></button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Grid -->
+                </div>
+               
+            </div>
+            <br>
+            <div style="text-align: center;">
+                <button class="btn btn-primary" (click)="Openpopupadd()"> Add</button>
+            </div>
+        </div>
+    </div>
+<div class="signin-popup" *ngIf="openadd==true">
+    <div class="signin-popup-content">
+        <div style="text-align: center;">
+            <a class="closedialog" (click)="closeadd()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </a>
+        </div>
+        <form [formGroup]="newClaimFormGroup" (ngSubmit)="add()">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" id="title" class="form-control" formControlName="title" required>
+              <div *ngIf="newClaimFormGroup.get('title')!.errors" class="text-danger">Title is required</div>
+            </div>
+          
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" class="form-control" formControlName="description" required></textarea>
+              <div *ngIf="newClaimFormGroup.get('description')!.errors" class="text-danger">Description is required</div>
+            </div>
+          
+            <div class="form-group">
+              <label for="TypeClaim">Type Claim</label>
+              <select id="TypeClaim" class="form-control" formControlName="TypeClaim" (change)="toggleOtherDetails()">
+                <option value="">Select Type</option>
+                <option *ngFor="let type of claimTypes" [value]="type">{{ type }}</option>
+              </select>
+              <div *ngIf="newClaimFormGroup.get('TypeClaim')!.errors" class="text-danger">Type is required</div>
+            </div>
+          
+            <div class="form-group" *ngIf="showOtherDetails">
+              <label for="otherDetails">Other </label>
+              <input type="text" id="otherDetails" class="form-control" formControlName="otherDetails">
+            </div>
+       <!--     <re-captcha (resolved)="resolved($event)" siteKey="6LfZLtUpAAAAAF3gysge3SX3P-s5-SataKdTaaUw"></re-captcha>
+         <div *ngIf="!recaptchaResolved" class="text-danger">Please resolve the reCAPTCHA before submitting the form.</div>
+            <button type="submit" class="btn btn-primary" [disabled]="!recaptchaResolved">Add</button>
+            --> <button type="submit" class="btn btn-primary">Add</button>
+
+          </form>
+          
+    </div>
+</div>
+
+<div class="signin-popup" *ngIf="openedit==true">
+    <div class="signin-popup-content">
+        <div style="text-align: center;">
+            <a class="closedialog" (click)="closeedit()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </a>
+        </div>
+        <form [formGroup]="ModifiClaimFormGroup" (ngSubmit)="edit()">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" id="title" class="form-control" formControlName="title" required>
+              <div *ngIf="ModifiClaimFormGroup.get('title')!.errors" class="text-danger">Title is required</div>
+            </div>
+          
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" class="form-control" formControlName="description" required></textarea>
+              <div *ngIf="ModifiClaimFormGroup.get('description')!.errors" class="text-danger">Description is required</div>
+            </div>
+          
+            <div class="form-group">
+              <label for="typeClaim">Type Claim</label>
+              <select id="typeClaim" class="form-control" formControlName="typeClaim" (change)="toggleOtherDetails2()">
+                <option value="">Select Type</option>
+                <option *ngFor="let type of claimTypes" [value]="type">{{ type }}</option>
+              </select>
+              <div *ngIf="ModifiClaimFormGroup.get('typeClaim')!.errors" class="text-danger">Type is required</div>
+            </div>
+          
+            <div class="form-group" *ngIf="showOtherDetails2">
+              <label for="otherDetails">Other </label>
+              <input type="text" id="otherDetails" class="form-control" formControlName="otherDetails">
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Edit</button>
+          </form>
+          
+    </div>
+</div>

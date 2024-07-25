@@ -1,0 +1,109 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-12">
+            <!-- Start Dashboard Sidebar -->
+            <div class="dashboard-sidebar">
+                <div class="user-image">
+                    <img src="assets/images/dashboard/user-image.jpg" alt="#">
+                </div>
+                <div class="dashboard-menu">
+                    <ul>
+                        <li><a routerLink="/dashboard/listroom"><i class="lni lni-dashboard"></i> Dashboard</a></li>
+                        <li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
+                        <li><a href="messages.html"><i class="lni lni-envelope"></i> Notification</a></li>
+                    </ul>
+                    <div class="button">
+                    </div>
+                </div>
+            </div>
+            <!-- Start Dashboard Sidebar -->
+        </div>
+        <div class="col-lg-9 col-md-8 col-12">
+            <div class="main-content">
+                <!-- Start Post Ad Block Area -->
+                <div class="dashboard-block mt-0">  
+                    <h3 class="block-title">Ad Annonce</h3>
+                    <div class="inner-block">
+                        <!-- Start Post Ad Tab -->
+                        <div class="post-ad-tab">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link" id="nav-item-details-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-item-details" type="button" role="tab"
+                                        aria-controls="nav-item-details" aria-selected="false">
+                                        <span class="serial">02</span>
+                                        Step
+                                        <span class="sub-title">Ad Details</span>
+                                    </button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade" id="nav-item-details" role="tabpanel"
+                                    aria-labelledby="nav-item-details-tab">
+                                    <!-- Start Post Ad Step Two Content -->
+                                    <div class="step-two-content">
+                                        <form class="default-form-style" method="post" action="#">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label><Canvas>CollocationName</Canvas></label>
+                                                        <input [(ngModel)] = "collocation.date_dispo" name="name" type="text" placeholder="Enter Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>Capacity*</label>
+                                                        <input [(ngModel)] = "collocation.descrption"  name="capacity" type="number" placeholder="Enter Capacity">
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <input [(ngModel)] = "collocation.montant" name="price" type="number" placeholder="Enter Price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-12">
+                                                    <div class="upload-input">
+                            
+                                                        <label for="upload" class="text-center content">
+                                                            <span class="text">
+                                                                <span class="d-block mb-15">Drop files anywhere
+                                                                    to Upload</span>
+                                                                <span class=" mb-15 plus-icon"><i
+                                                                        class="lni lni-plus"></i></span>
+                                                                <span class="main-btn d-block btn-hover">Select
+                                                                    File</span>
+                                                                <span class="d-block">Maximum upload file size
+                                                                    10Mb</span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group mt-30">
+                                                        <label>Description*</label>
+                                                        <textarea [(ngModel)] = "collocation.nbre_person" name="description" placeholder="Enter Description"></textarea>
+                                                    </div>
+                                                </div>
+                                             
+                                                <div class="col-12">
+                                                    <div class="form-group button mb-0">
+                                                        <button (click)="update()" type="submit" class="btn ">Add Room</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- Start Post Ad Step Two Content -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Post Ad Tab -->
+                    </div>
+                </div>
+                <!-- End Post Ad Block Area -->
+            </div>
+        </div>
+    </div>
+</div>

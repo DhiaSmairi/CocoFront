@@ -1,0 +1,30 @@
+<div class="col-lg-12 col-md-12 col-12">
+    <!-- Affichage du message de suppression réussie -->
+    <div *ngIf="deleteSuccessMessage" class="alert alert-success" role="alert">
+        {{ deleteSuccessMessage }}
+    </div>
+  
+    <!-- Start Single Item -->
+    <div class="single-item-grid" *ngFor="let collocation of collocations">
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-md-5 col-12">
+                <div class="content">
+                    <a href="javascript:void(0)" class="tag">Collocation</a>
+                    <h3 class="title">
+                        <a href="item-details.html">{{ collocation.designation }}</a>
+                    </h3>
+                    <ul class="details">
+                        <li><strong>Nombre de chambres:</strong> {{ collocation.nbre_chmbre }}</li>
+                        <li><strong>Description:</strong> {{ collocation.descrption }}</li>
+                        <li><strong>montant:</strong> {{ collocation.montant }}</li>
+                        <li><strong>Nombre de personnes:</strong> {{ collocation.nbre_person }}</li>
+                        <li><strong>Type de logement:</strong> {{ collocation.typeLogement }}</li>
+                        <li><strong>Type d'annonce de collocation:</strong> {{ collocation.typeAnnoColloc }}</li>
+                    </ul>
+                    <button (click)="deleteCollocation(collocation.id)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

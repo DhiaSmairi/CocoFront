@@ -1,0 +1,23 @@
+<div class="col-lg-12 col-md-12 col-12">
+  <!-- Start Single Item -->
+  <div class="single-item-grid" *ngFor="let covoiturage of cocvoitu">
+      <div class="row align-items-center">
+          <div class="col-lg-7 col-md-5 col-12">
+              <div class="content">
+                  <a href="javascript:void(0)" class="tag">Covoiturage</a>
+                  <h3 class="title">
+                      <a href="item-details.html">{{ covoiturage.designation }}</a>
+                  </h3>
+                  <div>
+                      <ul class="price">Heure Depart: {{ covoiturage.heure_Depart }}</ul>
+                      <ul class="price">Lieu Depart: {{ covoiturage.lieu_depart }}</ul>
+                      <ul class="price" >Lieu Fin: {{ covoiturage.lieu_fin }}</ul>
+                      <ul class="price">Type Covoiturage: {{ covoiturage.typeCovoiturage }}</ul>
+                  </div>
+                  <br>
+                  <button class="btn btn-danger" (click)="deleteCovoiturage(covoiturage.id)">Delete</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

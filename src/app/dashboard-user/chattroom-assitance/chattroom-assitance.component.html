@@ -1,0 +1,311 @@
+<!--<app-header></app-header>-->
+<!--
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title">Chatroom  assistance</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+               <ul class="breadcrumb-nav">
+                   <li><a href="/Chattroomassitance">Home</a></li>
+                    <li>Chatroom  assistance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<!-- End Breadcrumbs -
+
+Start Category -->
+<section class="category-page section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="category-sidebar">
+                    <div class="single-widget search">
+                        <h3>Search</h3>
+                        <div class="search-container">
+                            <input type="text" placeholder="Search Here..." [(ngModel)]="searchText" (input)="filterChatrooms()">
+                            <button type="submit"><i class="lni lni-search-alt"></i></button>
+                        </div>
+                    </div>
+                    <!-- Start Single Widget -->
+                    <div class="single-widget">
+                        <h3>All Rooms</h3>
+                        <ul class="list" *ngIf="filteredChatrooms &&filteredChatrooms.length>0">
+                            <li class="clearfix" *ngFor="let item of filteredChatrooms " (click)="select(item)" >
+                                <div class="about" *ngIf="item.status ||(item.isitowner || item.isitinthelis)">
+                                    <div class="name">{{item.owner.username}}</div>
+                                    <div class="status"> {{item.nom}}</div>                                            
+                                </div>
+                                
+                            </li>
+                           
+                        </ul>
+                        <ul class="list" *ngIf="Chatrooms&&Chatrooms.length==0">
+                            <img src="../../assets/images/_5931df-removebg-preview.png" alt="avatar" style="width: 70%;">
+                        </ul>
+                    </div>
+                    <!-- End Single Widget -->
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-12">
+                <div class="category-grid-list">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="category-grid-topbar">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-12" >
+                                        <h3 class="title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Assistance chatrooms help you better contact other users and help us establish your needs</h3>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
+                                    aria-labelledby="nav-grid-tab">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-12">
+                                            <div class="chat">
+                                                <div class="chat-header clearfix">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 hidden-sm " style="margin-left: 90%;">
+                                                            <a (click)="openadforum()" class="btn btn-primary" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #5d32ed; background-color: transparent; display: flex; justify-content: center; align-items: center;">
+                                                                <i class="lni lni-plus" style="color: #5d32ed;"></i>
+                                                              </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat-history" *ngIf="selctedchattroom">
+                                                    <div class="col-lg-12 hidden-sm " style="margin-left: 74%;"  *ngIf="selctedchattroom.isitowner">
+                                                        <a (click)="delteromm(selctedchattroom.chatRoomId)" class="btn btn-primary" style="margin-right: 10px; width: 50px; height: 50px; border-radius: 50%; border: 2px solid #5d32ed; background-color: transparent;  justify-content: center; align-items: center;">
+                                                            <i class="lni lni-eraser" style="color: #5d32ed;"></i>
+                                                          </a>
+                                                          <a (click)="opened(selctedchattroom)" class="btn btn-primary" style="margin-right: 10px; width: 50px; height: 50px; border-radius: 50%; border: 2px solid #5d32ed; background-color: transparent;  justify-content: center; align-items: center;">
+                                                            <i class="lni lni-pencil" style="color: #5d32ed;"></i>
+                                                          </a>
+                                                          <a (click)="callappelle()" class="btn btn-secondary" style=" width: 50px; height: 50px; border-radius: 50%; border: 2px solid #5d32ed; background-color: transparent;  justify-content: center; align-items: center;">
+                                                            <i class="fa fa-phone" style="color: #5d32ed;"></i>
+                                                          </a>
+                                                    </div>
+                                                    <div class="col-lg-12 hidden-sm " style="margin-left: 93%;"  *ngIf="!selctedchattroom.isitowner">
+                                                      <a (click)="callappelle()" class="btn btn-secondary" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #5d32ed; background-color: transparent;  justify-content: center; align-items: center;">
+                                                        <i class="fa fa-phone" style="color: #5d32ed;"></i>
+                                                      </a>
+                                                </div>
+                                                    <ul class="m-b-0" *ngIf="selctedchattroom.messages&&selctedchattroom.messages.length>0">
+                                                        <li class="clearfix" *ngFor="let message of selctedchattroom.messages">
+                                                            <div class="message-data float-right" *ngIf="message.isityourcomment==false">
+                                                                <span class="message-data-time">{{message.dateTime |date}}</span>
+                                                                <span class="message-data-time">{{message.user.username}}</span>
+                                                                
+                                                            </div>
+            
+                                                            <div class="message other-message " *ngIf="message.isityourcomment==false" (click)="OnClickHover(message.messageId)" style=" margin-left: 85%;" (dblclick)="OnDblClickHover(message.messageId)">  {{message.content}}<br><div style="justify-content: center; align-items: center;"><span *ngIf="message.likenbr>0">👍({{message.likenbr}})</span><span *ngIf="message.lovenbr>0">💓({{message.lovenbr}})</span><span *ngIf="message.hahanbr>0">😄({{message.hahanbr}})</span><span *ngIf="message.angrynbr>0">😠({{message.angrynbr}})</span></div> 
+                                                              <div *ngIf="message.isHovered">
+                                                                <i class="fa  fa-solid fa-icons" (click)="opeenpopupreaction();idrooommm=selctedchattroom.chatRoomId;idddmmmessage=message.messageId" style="color: white;"></i>
+                                                                <i class="fa fa-solid fa-comment" (click)="showResponseInput = true" style="color: white;  margin-left: 13%;"></i>
+                                                                <input *ngIf="showResponseInput&&message.reponse==null" type="text" [(ngModel)]="messagResponse" (keydown.enter)="AddReponse(message.messageId)">
+                                                                <input *ngIf="showResponseInput&&message.reponse!=null" type="text" [(ngModel)]="messagResponse" (keydown.enter)="UpdateReponse(message.messageId,message.reponse.idreponse)">
+                                  
+                                                            </div>
+                                                          </div>
+                                                          <div *ngIf="message.reponse!=null &&message.isityourcomment==false">
+                                                            <div *ngIf="message.reponse.user.id==currentuser.id" class="message other-message" style="margin-top: 2%; margin-left: 60%; color: rgb(88, 88, 88);" >Response(you : {{message.reponse.content}})</div>
+                                                            <div *ngIf="message.reponse.user.id!=currentuser.id" class="message other-message" style="margin-top: 2%; margin-left: 60%; color: rgb(88, 88, 88);" >Response({{message.reponse.user.username}} : {{message.reponse.content}})</div>
+                                                          </div>
+                                                            <div class="message-data">
+                                                                <span class="message-data-time" *ngIf="message.isityourcomment==true">{{message.dateTime |date}}</span>
+                                                            </div>
+                                                            <div class="message my-message" *ngIf="message.isityourcomment==true" (click)="message.isHovered = true;messagedit=message.content;idmessage=message.messageId" 
+                                                            (dblclick)="message.isHovered = false;messagedit='';idmessage=0">{{message.content}}<br><div style="justify-content: center; align-items: center;"><span *ngIf="message.likenbr>0">👍({{message.likenbr}})</span><span *ngIf="message.lovenbr>0">💓({{message.lovenbr}})</span><span *ngIf="message.hahanbr>0">😄({{message.hahanbr}})</span><span *ngIf="message.angrynbr>0">😠({{message.angrynbr}})</span></div> 
+                                                              <div *ngIf="message.isHovered">
+                                                                <i class="fa fa-trash" (click)="deleteMessage(idmessage,selctedchattroom.chatRoomId)" style="color: #5d32ed;"></i>
+                                                                <i class="fa fa-pencil" (click)="showUpdateInput = true" style="color: #5d32ed; margin-left: 7%;"></i>
+                                                                <input *ngIf="showUpdateInput" type="text" [(ngModel)]="messagedit" (keydown.enter)="updateMessage(selctedchattroom.chatRoomId)">
+                                  
+                                                            </div>
+                                                            </div>
+                                                            <div *ngIf="message.reponse!=null &&message.isityourcomment==true">
+                                                          
+                                                              <div class="message my-message" style="margin: 5%; margin-right: 10%; color: gray;" >Response({{message.reponse.user.username}} : {{message.reponse.content}})</div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                    
+                                                    <ul class="m-b-0" *ngIf="selctedchattroom.messages&&selctedchattroom.messages.length==0">
+                                                        <span class="text-secondary" style="padding-left: 43%;">This room doesn't have any messages yet</span>
+                                                    </ul>
+                                                    <div class="chat-message clearfix">
+                                                        <div class="input-group mb-0" style="display: flex;">
+                                                          <input type="text" class="form-control" [(ngModel)]="messageadd" placeholder="Enter text here..." style="flex: 1;">
+                                                          <div style="padding-left: 10px;">
+                                                            <button style="background-color: transparent; border-color: t
+                                                            ransparent;" (click)="addmessage(selctedchattroom.chatRoomId)"><i class="fa fa-share"></i></button>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                </div>
+                                                <div class="chat-history " *ngIf="!selctedchattroom" >
+                                                    <img src="../../assets/images/Capture_d_écran_2024-04-21_091454-removebg-preview.png" alt="" style=" padding-top: 10%;"><br>
+                                                    <span class="text-secondary" style="padding-left: 30%;">You didn't select any room</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="popup" *ngIf="openaddforum">
+    <div class="popup-content">
+        <a class="closedialog" (click)="closeaddforum()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </a>
+          <form [formGroup]="addchatroomforum" (ngSubmit)="onadd()">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" formControlName="description" id="description" placeholder="Enter description">
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" class="form-control" formControlName="nom" id="nom" placeholder="Enter nom">
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <div class="custom-control custom-switch">
+                  <label class="switch">
+                    <input type="checkbox" formControlName="status" [checked]="isPublicadd" (click)="toggleStatus()">
+                    <span class="slider "></span>
+                    <span class="switch-label">{{ isPublicadd ? 'Public' : 'Private' }}</span>
+                  </label>
+                  
+                </div>
+              </div>
+              
+            <button type="submit" class="btn btn-outline-secondary">Add</button>
+          </form>
+    </div>
+</div>
+
+<div class="popup" *ngIf="openivt">
+    <div class="popup-content">
+        <a class="closedialog" (click)="closeinvite()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </a>
+          <div>
+            <h2>Invite users to Room</h2>
+            <ul>
+              <li *ngFor="let user of Users">
+                <input type="checkbox" *ngIf="user" id="{{user.id}}" [checked]="isUserSelected(user.id)" (change)="toggleUser(user.id, $event)">
+                <label for="{{user.id}}">
+                  {{user.username}}<br><br>
+                </label>
+              </li><br><br>
+            </ul>
+          </div>
+          
+            <button type="submit" class="btn btn-outline-secondary" (click)="Inviite()">Invite</button>
+          
+    </div>
+</div>
+
+<div class="popup" *ngIf="openj">
+    <div class="popup-content">
+        <h4 class="text-secondary">Sorry you are not in this room would you like to join it ?</h4>
+          
+        <button type="submit" class="btn btn-outline-secondary" (click)="joindre()">Yes</button>
+        <button type="submit" class="btn btn-outline-secondary" (click)="closejoindre()">No</button>
+    </div>
+</div>
+
+<div class="popup" *ngIf="openedit">
+    <div class="popup-content">
+        <a class="closedialog" (click)="closeedit()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </a>
+          <form [formGroup]="editchatroomforum" (ngSubmit)="onedit()">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" formControlName="description" id="description" placeholder="Enter description">
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" class="form-control" formControlName="nom" id="nom" placeholder="Enter nom">
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <div class="custom-control custom-switch">
+                  <label class="switch">
+                    <input type="checkbox" formControlName="status" [checked]="isPublicedit" (click)="toggleStatusedit()">
+                    <span class="slider "></span>
+                    <span class="switch-label">{{ isPublicedit ? 'Public' : 'Private' }}</span>
+                  </label>
+                  
+                </div>
+              </div>
+              
+            <button type="submit" class="btn btn-outline-secondary">Edit</button>
+          </form>
+    </div>
+</div>
+
+<div  >
+  <div class="popup-content">
+  
+    <div #root></div>
+  </div>
+</div>
+<div class="popup" *ngIf="rectionpopup">
+  <div class="popup-content">
+    <a class="closedialog" (click)="closepopupreaction()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </a>
+    <div class="emoji  emoji--like" (click)="onlike()">
+      <div class="emoji__hand">
+          <div class="emoji__thumb"></div>
+      </div>
+    </div>
+    <div class="emoji  emoji--love" (click)="onlove()">
+      <div class="emoji__heart"></div>
+    </div>
+    <div class="emoji  emoji--haha" (click)="onhaha()">
+      <div class="emoji__face">
+          <div class="emoji__eyes"></div>
+          <div class="emoji__mouth">
+              <div class="emoji__tongue"></div>
+          </div>
+      </div>
+    </div>
+    <div class="emoji  emoji--angry" (click)="onangry()">
+      <div class="emoji__face">
+          <div class="emoji__eyebrows"></div>
+          <div class="emoji__eyes"></div>
+          <div class="emoji__mouth"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<app-footerfront></app-footerfront>-->

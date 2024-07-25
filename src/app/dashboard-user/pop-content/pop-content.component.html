@@ -1,0 +1,23 @@
+<div>
+    <form #productForm="ngForm" (ngSubmit)="onOkClick(productForm)">
+  
+      <label for="inputAdresse">Designation :</label>
+      <input class="form-control" type="text" id="inputAdresse" name="designation" [(ngModel)]="covoiturage.designation">
+  
+     
+      <label for="inputPointSortie">Point de sortie :</label>
+      <input type="datetime-local" [(ngModel)] = "covoiturage.heure_Depart" class="form-control" id="endDate" name="endDate"> 
+      <label for="inputTypeCovoiturage">Type de covoiturage :</label>
+      <select class="form-control" id="inputTypeCovoiturage" name="typeCovoiturage" [(ngModel)]="covoiturage.typeCovoiturage">
+        <option value="quotidien">Quotidien</option>
+        <option value="occasionnelle">Occasionnelle</option>
+      </select>
+      <label for="inputNbrPlace">Nombre de places disponibles :</label>
+      <input class="form-control" type="number" id="inputNbrPlace" name="nbrePlaceDisponible" [(ngModel)]="covoiturage.nbrePlaceDisponible">
+      
+
+  
+      <!-- Le bouton de soumission doit être de type "submit" pour déclencher ngSubmit -->
+      <button class="btn btn-success" type="submit">Ajouter</button>
+    </form>
+  </div>

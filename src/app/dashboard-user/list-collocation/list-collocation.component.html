@@ -1,0 +1,36 @@
+<div class="col-lg-12 col-md-12 col-12">
+  <div *ngIf="deleteSuccessMessage" class="alert alert-success" role="alert">
+    {{ deleteSuccessMessage }}
+  </div>
+
+  <div class="single-item-grid" *ngFor="let collocationItem of collocation">
+    <div class="row align-items-center">
+      <div class="col-lg-5 col-md-7 col-12">
+        <div class="image">
+          <a href="item-details.html">
+              <img *ngIf="collocationItem.imageModels?.length" [src]="url + 'annonces/getimage/' + collocationItem.imageModels[0].filePath" alt="#">
+              <img *ngIf="!collocationItem.imageModels?.length" src="assets/images/default-image.jpg" alt="default image">
+          </a>
+          <i class="cross-badge lni lni-bolt"></i>
+          <span class="flat-badge sale">Sale</span>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-5 col-12">
+        <div class="content">
+          <a href="javascript:void(0)" class="tag">Collocation</a>
+          <h3 class="title">
+            <a href="item-details.html">{{ collocationItem.designation }}</a>
+          </h3>
+          <ul class="details">
+            <li><strong>Nombre de chambres:</strong> {{ collocationItem.nbre_chmbre }}</li>
+            <li><strong>Description:</strong> {{ collocationItem.descrption }}</li>
+            <li><strong>Montant:</strong> {{ collocationItem.montant }}</li>
+            <li><strong>Nombre de personnes:</strong> {{ collocationItem.nbre_person }}</li>
+            <li><strong>Type de logement:</strong> {{ collocationItem.typeLogement }}</li>
+            <li><strong>Type d'annonce de colocation:</strong> {{ collocationItem.typeAnnoColloc }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

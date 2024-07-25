@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-12">
+            <div class="dashboard-sidebar">
+                <div class="user-image">
+                    <img src="assets/images/dashboard/user-image.jpg" alt="#">
+                <!--    <h3>{{ currentuser.username}}</h3>-->
+                </div>
+                <div class="dashboard-menu">
+                    <ul>
+                 <!--       <li><a routerLink="/dashboard/listroom"><i class="lni lni-dashboard"></i> Dashboard</a></li>-->
+                        <li><a href="my-items.html"><i class="lni lni-bolt-alt"></i> My Ads</a></li>
+                        <li><a href="messages.html"><i class="lni lni-envelope"></i> Notification</a></li>
+                    </ul>
+                    <div class="button">
+                        <a class="btn"(click)="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 col-12">
+            <div class="main-content">
+                <div class="dashboard-block mt-0">
+                    <h3 class="block-title">Carpooling Ad</h3>
+                    <div class="inner-block">
+                        <div class="post-ad-tab">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link" id="nav-item-details-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-item-details" type="button" role="tab"
+                                        aria-controls="nav-item-details" aria-selected="false">
+                                        <span class="serial">02</span>
+                                        Step
+                                        <span class="sub-title">Ad Details</span>
+                                    </button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade" id="nav-item-details" role="tabpanel"
+                                    aria-labelledby="nav-item-details-tab">
+                                    <div class="step-two-content">
+                                        <form class="default-form-style" method="post" action="#">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>Ad Title*</label>
+                                                        <input [(ngModel)]=" covoiturage.designation" name="designation" type="text" placeholder="Enter Title">
+                                                    </div>
+                                                </div> <div class="col-12">
+                                                    <div class="form-group">
+                                                      <label for="endDate">Date:</label>
+                                                      <input type="datetime-local" [(ngModel)]="covoiturage.heure_Depart" class="form-control" id="endDate" name="endDate">
+                                                    </div>
+                                                  </div>
+                                              
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>lieu_depart*</label>
+                                                        <input [(ngModel)]="covoiturage.lieu_depart" name="lieu_depart" type="text" placeholder="Enter Departure Location">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>lieu_fin*</label>
+                                                        <input [(ngModel)]="covoiturage.lieu_fin " name="lieu_fin" type="text" placeholder="Enter Departure Location">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>Nbre Place*</label>
+                                                        <input [(ngModel)]="covoiturage.nbrePlaceDisponible" name="bnre" type="number" placeholder="Enter Nombre Place">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                      <label>Carpooling Type</label>
+                                                      <select [(ngModel)]="covoiturage.typeCovoiturage" name="typeCovoiturage">
+                                                        <option *ngFor="let option of typeCovoiturageOptions" [value]="option">{{ option }}</option>
+                                                      </select>
+                                                    </div>
+                                                  </div>
+                                    
+                                           <!--     <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label>User ID*</label>
+                                                        <input [(ngModel)]="idUSEr" name="idUSEr" type="number" placeholder="Enter User ID">
+                                                    </div>
+                                                </div>
+                        -->
+                                                <div class="col-12">
+                                                    <div class="form-group button mb-0">
+                                                        <button (click)="ajouter()" type="submit" class="btn">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
